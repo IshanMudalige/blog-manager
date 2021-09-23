@@ -1,0 +1,26 @@
+{
+  "name": "blog-manager",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/IshanMudalige/blog-manager.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-session": "^1.17.2",
+    "googleapis": "^87.0.0",
+    "nodemon": "^2.0.12"
+  },
+  "bugs": {
+    "url": "https://github.com/IshanMudalige/blog-manager/issues"
+  },
+  "homepage": "https://github.com/IshanMudalige/blog-manager#readme"
+}
