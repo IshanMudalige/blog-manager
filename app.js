@@ -4,13 +4,17 @@ const axios = require('axios');
 var authed = false;
 var name,pic,userId;
 var token = "";
-
+var items = [];
+var bloggerID = "";
 
 const { google } = require("googleapis");
 
 const app = express();
+
 app.use(express.urlencoded({extended:false}));
+
 app.use( express.static( "views" ) );
+
 const CLIENT_ID = OAuth2Data.web.client_id;
 const CLIENT_SECRET = OAuth2Data.web.client_secret;
 const REDIRECT_URL = OAuth2Data.web.redirect_uris[0];
@@ -61,7 +65,7 @@ app.get("/",(req, res) => {
     }
   });
 
-  // logout
+// logout
 app.get('/logout',(req,res) => {
     authed = false
     res.redirect('/')
