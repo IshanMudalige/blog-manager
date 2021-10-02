@@ -65,6 +65,34 @@ app.get("/",(req, res) => {
     }
   });
 
+  // getting blog list
+app.get("/home",(req, res) => { 
+  axios.get(`https://www.googleapis.com/blogger/v3/users/self/blogs`,{ headers: {"Authorization" : `Bearer ${token}`} })
+  .then(response => {
+    console.log("------------------> success");
+    bloggerID = response.data.items[0].id;
+    axios.get(`https://www.googleapis.com/blogger/v3/blogs/${response.data.items[0].id}/posts`,{ headers: {"Authorization" : `Bearer ${token}`} })
+    .then(response2 => {
+      //console.log(response2.data);
+      items = response2.data.items; 
+      res.render("success", {
+        name: name,
+        pic: pic,
+        list:items,
+        success:false
+      });
+    })
+    .catch(error2 => {
+      console.log(error2);
+    });
+
+  })
+  .catch(error => {
+    console.log(error);
+  });
+
+});
+
 // logout
 app.get('/logout',(req,res) => {
     authed = false
