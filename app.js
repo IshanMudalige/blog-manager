@@ -93,6 +93,34 @@ app.get("/home",(req, res) => {
 
 });
 
+// add a new blog post
+app.post("/addNew",(req, res) => { 
+  console.log(`------->${req.body.title}`);
+  axios.post(
+    `https://www.googleapis.com/blogger/v3/blogs/${bloggerID}/posts/`,
+    {
+        "kind": "blogger#post",
+        "blog": {
+          "id": `${bloggerID}`
+        },
+        "title": `${req.body.title}`,
+        "content": `${req.body.content}`
+    },
+
+    { headers: {"Authorization" : `Bearer ${token}`,"Content-Type": "application/json"} },
+    
+    )
+  .then(response => {
+    console.log(response.data);
+    res.redirect("/home");
+  })
+  .catch(error => {
+    console.log(error);
+  });
+
+});
+
+
 // logout
 app.get('/logout',(req,res) => {
     authed = false
