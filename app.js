@@ -120,6 +120,23 @@ app.post("/addNew",(req, res) => {
 
 });
 
+//delete a existing blog post
+app.post("/delete:id",(req, res) => { 
+  console.log(`------->${req.params.id}`);
+  axios.delete(
+    `https://www.googleapis.com/blogger/v3/blogs/${bloggerID}/posts/${req.params.id}`,
+    { headers: {"Authorization" : `Bearer ${token}`,"Content-Type": "application/json"} },
+    )
+  .then(response => {
+    console.log(response.data);
+    res.redirect("/home");
+  })
+  .catch(error => {
+    console.log(error);
+  });
+
+});
+
 
 // logout
 app.get('/logout',(req,res) => {
