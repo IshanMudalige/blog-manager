@@ -10,7 +10,7 @@
     <!-- nav bar -->
     <nav class="navbar navbar-dark bg-dark justify-content-between" style="padding-top: 20px;">
       <div class='row'>
-        <img src="<%=pic%>" width="50" height="50" class="d-inline-block align-top rounded-circle" alt="Avatar" style="margin-left: 20px;">
+        <img src="<%= pic %>" width="50" height="50" class="d-inline-block align-top rounded-circle" alt="Avatar" style="margin-left: 20px;" onerror="this.onerror=null; this.src='profile.png'">
         <div class="column">
           <p class="text-lg font-weight-normal" style="color: white;font-size:small;">&nbsp&nbsp Welcome<br><span class="text-lg font-weight-bold" style="color: white;font-size:large;">&nbsp&nbsp <%= name %></span></p>
         </div>
@@ -53,7 +53,7 @@
             <a href="#" class="close" data-dismiss="alert" aria-label="close"
               >×</a
             >
-            <strong>Success!</strong> Your Image File is Uploaded.
+            <strong>Success!</strong> Your post published.
           </div>
           <%}%>
           <table class="table">
@@ -71,7 +71,8 @@
                 <td><%= item.published.split("T")[0] %></td>
                 <td><a href="<%= item.url %>" target="_blank">View</a></td>
                 <td>
-                  <form action="/delete?id=<%= item.id %>" method="post">
+                  <form action="/delete" method="post" >
+                    <input type="text" name="id" hidden value="<%=item.id %>">
                     <button type="submit" value="submit" class="btn btn-warning"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
                   </form>
                 

@@ -75,7 +75,7 @@ app.get("/home",(req, res) => {
     .then(response2 => {
       //console.log(response2.data);
       items = response2.data.items; 
-      res.render("success", {
+      res.render("home", {
         name: name,
         pic: pic,
         list:items,
@@ -121,10 +121,11 @@ app.post("/addNew",(req, res) => {
 });
 
 //delete a existing blog post
-app.post("/delete:id",(req, res) => { 
-  console.log(`------->${req.params.id}`);
+app.post("/delete",(req, res) => { 
+  console.log(`------->${req.body.id}`);
+
   axios.delete(
-    `https://www.googleapis.com/blogger/v3/blogs/${bloggerID}/posts/${req.params.id}`,
+    `https://www.googleapis.com/blogger/v3/blogs/${bloggerID}/posts/${req.body.id}`,
     { headers: {"Authorization" : `Bearer ${token}`,"Content-Type": "application/json"} },
     )
   .then(response => {
